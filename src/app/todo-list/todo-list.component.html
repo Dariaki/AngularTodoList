@@ -1,13 +1,22 @@
-<div>
-  <div>
+<main class="main">
+  <div class="form">
     <h1>Add Todo:</h1>
     <form
       [formGroup]="form"
       (ngSubmit)="onSubmit()">
-      <input
-        formControlName="title"
-        type="text">
-      <button [disabled]="form.invalid" type="submit">Add</button>
+      <mat-form-field>
+        <mat-label>New Item</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          type="text">
+      </mat-form-field>
+      <button
+        color="warn"
+        mat-raised-button
+        [disabled]="form.invalid"
+        type="submit"
+      >Add</button>
     </form>
   </div>
 <!--  <div>-->
@@ -17,14 +26,15 @@
 <!--    <button>By Author</button>-->
 <!--    <button>Search by Title With the help of Pipe</button>-->
 <!--  </div>-->
-  <ul>
-    <li
+  <mat-list class="todo-list">
+    <mat-list-item
+      class="todo-list__item"
       *ngFor="let todo of todoList"
     >
       {{todo.title}}
-      <input type="checkbox" [checked]="todo.completed">
-      <a [routerLink]="todo.id">View Details</a>
-    </li>
-  </ul>
-</div>
+      <a  mat-raised-button [routerLink]="todo.id">View Details</a>
+      <mat-checkbox align="left" type="checkbox" [checked]="todo.completed"></mat-checkbox>
+    </mat-list-item>
+  </mat-list>
+</main>
 
