@@ -2,12 +2,12 @@
   <div>
     <h1>Add Todo:</h1>
     <form
-      [formGroup]="form"
+      [formGroup]="addTodoForm"
       (ngSubmit)="onSubmit()">
       <input
         formControlName="title"
         type="text">
-      <button [disabled]="form.invalid" type="submit">Add</button>
+      <button [disabled]="addTodoForm.invalid" type="submit">Add</button>
     </form>
   </div>
 <!--  <div>-->
@@ -22,7 +22,7 @@
       *ngFor="let todo of todoList"
     >
       {{todo.title}}
-      <input type="checkbox" [checked]="todo.completed">
+      <input type="checkbox" [checked]="todo.completed" (change)="!todo.completed">
       <a [routerLink]="todo.id">View Details</a>
     </li>
   </ul>

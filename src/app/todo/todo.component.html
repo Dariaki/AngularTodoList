@@ -1,11 +1,15 @@
 <div *ngIf="todoItem && todoItem.id">
   <form
-    [formGroup]="checkoutForm"
-    (ngSubmit)="onSubmit(checkoutForm.value)"
+    [formGroup]="editTodoForm"
+    (ngSubmit)="onSubmit()"
   >
-    Title: <input [readonly]="readonly" formControlName="newTitle">
+    Title:
+    <span *ngIf="readonly; else editAllowed">{{todoItem.title}}</span>
+    <ng-template #editAllowed>
+      <input [readonly]="readonly" formControlName="newTitle" autofocus>
+    </ng-template>
     <button *ngIf="readonly" (click)="editTodo()">Edit</button>
-    <button *ngIf="!readonly" type="submit">Save</button>
+    <button *ngIf="!readonly" type="submit" [disabled]="editTodoForm.invalid">Save</button>
   </form>
   <button  (click)="deleteTodo()">Delete</button>
 </div>

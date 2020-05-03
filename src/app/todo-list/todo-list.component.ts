@@ -13,7 +13,7 @@ import { map } from "rxjs/operators"
 export class TodoListComponent implements OnInit {
 
   public todoList = [];
-  form: FormGroup;
+  addTodoForm: FormGroup;
 
   constructor(
     private TodoListService: TodoListService,
@@ -22,16 +22,16 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
+    this.addTodoForm = new FormGroup({
       title: new FormControl('', Validators.required)
     })
   }
 
   public onSubmit() {
-    const {title} = this.form.value;
+    const {title} = this.addTodoForm.value;
 
       this.TodoListService.addTodo(title);
-      this.form.reset();
+      this.addTodoForm.reset();
 
   }
 
