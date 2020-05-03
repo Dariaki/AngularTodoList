@@ -2,10 +2,10 @@
   <div class="form">
     <h1>Add Todo:</h1>
     <form
-      [formGroup]="form"
+      [formGroup]="addTodoForm"
       (ngSubmit)="onSubmit()">
       <mat-form-field>
-        <mat-label>New Item</mat-label>
+        <mat-label>New Task</mat-label>
         <input
           matInput
           formControlName="title"
@@ -14,7 +14,7 @@
       <button
         color="warn"
         mat-raised-button
-        [disabled]="form.invalid"
+        [disabled]="addTodoForm.invalid"
         type="submit"
       >Add</button>
     </form>
@@ -32,8 +32,10 @@
       *ngFor="let todo of todoList"
     >
       {{todo.title}}
-      <a  mat-raised-button [routerLink]="todo.id">View Details</a>
-      <mat-checkbox align="left" type="checkbox" [checked]="todo.completed"></mat-checkbox>
+      <a
+        mat-raised-button
+        [routerLink]="todo.id">View Details</a>
+      <mat-checkbox type="checkbox" [checked]="todo.completed" (change)="!todo.completed"></mat-checkbox>
     </mat-list-item>
   </mat-list>
 </main>

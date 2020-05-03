@@ -12,30 +12,27 @@ import { map, tap } from "rxjs/operators";
 export class TodoListService {
 
   public todoListLocal = [
-    // {
-    //   id: '99999',
-    //   title: '99999',
-    //   completed: true,
-    //   userId: '99999',
-    //   author: '99999',
-    //   creationDate: '99999'
-    // },
-    // {
-    //   id: '888888',
-    //   title: '888888',
-    //   completed: false,
-    //   userId: '888888',
-    //   author: '888888',
-    //   creationDate: '888888'
-    // },
-    // {
-    //   id: '7777777',
-    //   title: '7777777',
-    //   completed: false,
-    //   userId: '7777777',
-    //   author: '7777777',
-    //   creationDate: '7777777'
-    // }
+    {
+      id: '99999',
+      title: '99999',
+      completed: true,
+      userId: '99999',
+      creationDate: '99999'
+    },
+    {
+      id: '888888',
+      title: '888888',
+      completed: false,
+      userId: '888888',
+      creationDate: '888888'
+    },
+    {
+      id: '7777777',
+      title: '7777777',
+      completed: false,
+      userId: '7777777',
+      creationDate: '7777777'
+    }
   ];
   constructor(
     private http: HttpClient
@@ -74,7 +71,6 @@ export class TodoListService {
         title: todoTitle,
         completed: false,
         userId: '99999',
-        author: '99999',
         creationDate: '99999'
       }
     )
