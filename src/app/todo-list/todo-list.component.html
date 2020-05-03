@@ -23,8 +23,7 @@
 <!--    <button>Completed</button>-->
 <!--    <button>Uncompleted</button>-->
 <!--    <button>By Date</button>-->
-<!--    <button>By Author</button>-->
-<!--    <button>Search by Title With the help of Pipe</button>-->
+<!--    <input value="Title">-->
 <!--  </div>-->
   <mat-list class="todo-list">
     <mat-list-item
@@ -35,7 +34,7 @@
       <a
         mat-raised-button
         [routerLink]="todo.id">View Details</a>
-      <mat-checkbox type="checkbox" [checked]="todo.completed" (change)="!todo.completed"></mat-checkbox>
+      <mat-checkbox type="checkbox" [checked]="todo.completed" (change)="checkTodo(todo.id)"></mat-checkbox>
     </mat-list-item>
   </mat-list>
 </main>

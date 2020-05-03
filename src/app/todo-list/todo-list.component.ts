@@ -35,5 +35,9 @@ export class TodoListComponent implements OnInit {
 
   }
 
+  public checkTodo(todoId) {
+    this.TodoListService.markTodo(todoId);
+  }
+
 
 }

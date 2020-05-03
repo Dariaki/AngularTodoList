@@ -81,6 +81,11 @@ export class TodoListService {
     todo.title = newTitle;
   }
 
+  public markTodo(todoId) {
+    const todo = this.todoListLocal.find(obj => obj.id == todoId);
+    todo.completed = !todo.completed;
+  }
+
   public deleteTodo(todoId) {
     const removeIndex = this.todoListLocal.map(item => item.id).indexOf(todoId);
     this.todoListLocal.splice(removeIndex, 1);
