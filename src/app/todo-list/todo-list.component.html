@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <h1>Add Todo:</h1>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+      <input
+        formControlName="title"
+        type="text">
+      <button [disabled]="form.invalid" type="submit">Add</button>
+    </form>
+  </div>
+<!--  <div>-->
+<!--    <button>Completed</button>-->
+<!--    <button>Uncompleted</button>-->
+<!--    <button>By Date</button>-->
+<!--    <button>By Author</button>-->
+<!--    <button>Search by Title With the help of Pipe</button>-->
+<!--  </div>-->
+  <ul>
+    <li
+      *ngFor="let todo of todoList"
+    >
+      {{todo.title}}
+      <input type="checkbox" [checked]="todo.completed">
+      <a [routerLink]="todo.id">View Details</a>
+    </li>
+  </ul>
+</div>
+

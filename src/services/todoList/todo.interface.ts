@@ -1,0 +1,1 @@
+export default interface ITodoList {  id: string,  title: string,  completed: boolean,  userId: string,  author: string,  creationDate: string}

@@ -1,0 +1,11 @@
+<div *ngIf="todoItem && todoItem.id">
+  <form
+    [formGroup]="checkoutForm"
+    (ngSubmit)="onSubmit(checkoutForm.value)"
+  >
+    Title: <input [readonly]="readonly" formControlName="newTitle">
+    <button *ngIf="readonly" (click)="editTodo()">Edit</button>
+    <button *ngIf="!readonly" type="submit">Save</button>
+  </form>
+  <button  (click)="deleteTodo()">Delete</button>
+</div>
