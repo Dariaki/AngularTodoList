@@ -8,20 +8,27 @@ import {HttpClientModule} from "@angular/common/http";
 import { TodoComponent } from './todo/todo.component';
 import { IntroComponent } from './intro/intro.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from "./material/material.module";
+import {TodoFilterPipe} from '../services/todoList/todofilter.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoComponent,
-    IntroComponent
+    IntroComponent,
+    TodoFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

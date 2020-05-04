@@ -1,11 +1,20 @@
-<div *ngIf="todoItem && todoItem.id">
+<mat-card
+  class="card"
+  *ngIf="todoItem && todoItem.id">
   <form
-    [formGroup]="checkoutForm"
-    (ngSubmit)="onSubmit(checkoutForm.value)"
+    [formGroup]="editTodoForm"
+    (ngSubmit)="onSubmit()"
   >
-    Title: <input [readonly]="readonly" formControlName="newTitle">
-    <button *ngIf="readonly" (click)="editTodo()">Edit</button>
-    <button *ngIf="!readonly" type="submit">Save</button>
+    <mat-card-title>
+      <span matInput *ngIf="readonly; else editAllowed">{{todoItem.title}}</span>
+      <ng-template #editAllowed>
+        <input matInput [readonly]="readonly" formControlName="newTitle" autofocus>
+      </ng-template>
+    </mat-card-title>
+    <mat-card-actions class="card__button-container">
+      <button class="card__button" mat-flat-button *ngIf="readonly" (click)="editTodo()">Edit</button>
+      <button class="card__button" mat-flat-button *ngIf="!readonly" type="submit" [disabled]="editTodoForm.invalid">Save</button>
+      <button class="card__button" mat-flat-button type="button" (click)="deleteTodo()">Delete</button>
+    </mat-card-actions>
   </form>
-  <button  (click)="deleteTodo()">Delete</button>
-</div>
+</mat-card>

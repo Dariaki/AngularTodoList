@@ -1,30 +1,66 @@
-<div>
-  <div>
+<main class="main">
+  <div class="form">
     <h1>Add Todo:</h1>
     <form
-      [formGroup]="form"
+      [formGroup]="addTodoForm"
       (ngSubmit)="onSubmit()">
-      <input
-        formControlName="title"
-        type="text">
-      <button [disabled]="form.invalid" type="submit">Add</button>
+      <mat-form-field>
+        <mat-label>New Task</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          type="text">
+      </mat-form-field>
+      <button
+        class="form__add-button"
+        color="warn"
+        mat-raised-button
+        [disabled]="addTodoForm.invalid"
+        type="submit"
+      >Add</button>
     </form>
   </div>
-<!--  <div>-->
-<!--    <button>Completed</button>-->
-<!--    <button>Uncompleted</button>-->
-<!--    <button>By Date</button>-->
-<!--    <button>By Author</button>-->
-<!--    <button>Search by Title With the help of Pipe</button>-->
-<!--  </div>-->
-  <ul>
-    <li
-      *ngFor="let todo of todoList"
+  <div class="filters">
+    <button
+      class="filters__button"
+      mat-stroked-button
+      color="warn"
+      (click)="filterAll()">All</button>
+    <button
+      class="filters__button"
+      mat-stroked-button
+      color="warn"
+      (click)="filterCompleted()">Completed</button>
+    <button
+      class="filters__button"
+      mat-stroked-button
+      color="warn"
+      (click)="filterUncompleted()">Uncompleted</button>
+    <input
+      placeholder="Search by Title..."
+      [value]="searchTitleFilter"
+      (input)="searchTitleFilter = $event.target.value">
+  </div>
+  <mat-list class="todo-list">
+    <mat-list
+      class="todo-list__item"
+      *ngFor="let todo of todoList | todoTitleFilter:searchTitleFilter"
     >
-      {{todo.title}}
-      <input type="checkbox" [checked]="todo.completed">
-      <a [routerLink]="todo.id">View Details</a>
-    </li>
-  </ul>
-</div>
+      <span class="todo-list__item-element"
+        [ngClass]="todo.completed ? 'todo-list__item-title completed':'todo-list__item-title'"
+        >{{todo.title}}</span>
+      <div>
+        <mat-checkbox
+          class="todo-list__item-element"
+          type="checkbox"
+          [checked]="todo.completed"
+          color="warn"
+          (change)="checkTodo(todo.id)"></mat-checkbox>
+        <a class="todo-list__item-element"
+           mat-raised-button
+           [routerLink]="todo.id">View Details</a>
+      </div>
+    </mat-list>
+  </mat-list>
+</main>
 
