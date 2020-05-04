@@ -12,6 +12,7 @@
           type="text">
       </mat-form-field>
       <button
+        class="form__add-button"
         color="warn"
         mat-raised-button
         [disabled]="addTodoForm.invalid"
@@ -19,23 +20,47 @@
       >Add</button>
     </form>
   </div>
-<!--  <div>-->
-<!--    <button>Completed</button>-->
-<!--    <button>Uncompleted</button>-->
-<!--    <button>By Date</button>-->
-<!--    <input value="Title">-->
-<!--  </div>-->
+  <div class="filters">
+    <button
+      class="filters__button"
+      mat-stroked-button
+      color="warn"
+      (click)="filterAll()">All</button>
+    <button
+      class="filters__button"
+      mat-stroked-button
+      color="warn"
+      (click)="filterCompleted()">Completed</button>
+    <button
+      class="filters__button"
+      mat-stroked-button
+      color="warn"
+      (click)="filterUncompleted()">Uncompleted</button>
+    <input
+      placeholder="Search by Title..."
+      [value]="searchTitleFilter"
+      (input)="searchTitleFilter = $event.target.value">
+  </div>
   <mat-list class="todo-list">
-    <mat-list-item
+    <mat-list
       class="todo-list__item"
-      *ngFor="let todo of todoList"
+      *ngFor="let todo of todoList | todoTitleFilter:searchTitleFilter"
     >
-      {{todo.title}}
-      <a
-        mat-raised-button
-        [routerLink]="todo.id">View Details</a>
-      <mat-checkbox type="checkbox" [checked]="todo.completed" (change)="checkTodo(todo.id)"></mat-checkbox>
-    </mat-list-item>
+      <span class="todo-list__item-element"
+        [ngClass]="todo.completed ? 'todo-list__item-title completed':'todo-list__item-title'"
+        >{{todo.title}}</span>
+      <div>
+        <mat-checkbox
+          class="todo-list__item-element"
+          type="checkbox"
+          [checked]="todo.completed"
+          color="warn"
+          (change)="checkTodo(todo.id)"></mat-checkbox>
+        <a class="todo-list__item-element"
+           mat-raised-button
+           [routerLink]="todo.id">View Details</a>
+      </div>
+    </mat-list>
   </mat-list>
 </main>
 

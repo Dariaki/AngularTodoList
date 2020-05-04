@@ -1,4 +1,6 @@
-<mat-card *ngIf="todoItem && todoItem.id">
+<mat-card
+  class="card"
+  *ngIf="todoItem && todoItem.id">
   <form
     [formGroup]="editTodoForm"
     (ngSubmit)="onSubmit()"
@@ -9,10 +11,10 @@
         <input matInput [readonly]="readonly" formControlName="newTitle" autofocus>
       </ng-template>
     </mat-card-title>
-    <mat-card-actions>
-      <button mat-flat-button *ngIf="readonly" (click)="editTodo()">Edit</button>
-      <button mat-flat-button *ngIf="!readonly" type="submit" [disabled]="editTodoForm.invalid">Save</button>
-      <button mat-flat-button type="button" (click)="deleteTodo()">Delete</button>
+    <mat-card-actions class="card__button-container">
+      <button class="card__button" mat-flat-button *ngIf="readonly" (click)="editTodo()">Edit</button>
+      <button class="card__button" mat-flat-button *ngIf="!readonly" type="submit" [disabled]="editTodoForm.invalid">Save</button>
+      <button class="card__button" mat-flat-button type="button" (click)="deleteTodo()">Delete</button>
     </mat-card-actions>
   </form>
 </mat-card>
